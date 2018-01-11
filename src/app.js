@@ -1,9 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import blue from 'material-ui/colors/blue';
+import pink from 'material-ui/colors/pink';
+import red from 'material-ui/colors/red';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Shell } from './shell';
 
-class App extends Component {
+const palette = {
+    primary: blue,
+    secondary: pink,
+    error: red
+};
+
+class App extends React.Component {
     render() {
+        const theme = createMuiTheme({ palette });
+
         return (
-            <div>Hello World</div>
+            <MuiThemeProvider theme={theme}>
+                <Shell />
+            </MuiThemeProvider>
         );
     }
 }
