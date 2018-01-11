@@ -29,27 +29,27 @@ class GridDemoBase extends React.Component {
         const { classes } = this.props;
 
         return (
-                <Grid container justify="center" className={classes.root}>
-                    {members.map(member => (
-                        <Grid key={member.name} item xs={12} sm={6} md={4}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={`https://github.com/${member.github}.png`}
-                                    title="Contemplative Reptile"
-                                />
-                                <CardContent>
-                                    <Typography type="headline">
-                                        {member.name}
-                                    </Typography>
-                                    <Typography type="subheading" color="secondary">
-                                        {member.flag}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
+            <Grid container justify="center" className={classes.root}>
+                {members.map(member => (
+                    <Grid key={member.name} item xs={12} sm={6} md={4}>
+                        <Card className={classes.card}>
+                            <CardMedia
+                                className={classes.media}
+                                image={`https://github.com/${member.github}.png`}
+                                title="Contemplative Reptile"
+                            />
+                            <CardContent>
+                                <Typography type="headline">
+                                    {member.name}
+                                </Typography>
+                                <Typography type="subheading" color="secondary">
+                                    {member.flag}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
         );
     }
 }
