@@ -1,0 +1,19 @@
+{
+  "name": "material-ui-playground",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "source-map-explorer": "^1.5.0"
+  }
+}
