@@ -11,17 +11,17 @@ const styles = theme => ({
     root: {
         margin: '0 auto',
 
-        // Fit 3 items when width > 960px
-        width: ITEM_WIDTH * 3 + theme.spacing.unit * 2,
+        // Default: fit 1 item
+        width: ITEM_WIDTH,
 
-        // Fit 2 items when between 600px and 960px
-        '@media (max-width: 960px)': {
+        // > 600px: fit 2 items
+        [theme.breakpoints.up('sm')]: {
             width: ITEM_WIDTH * 2 + theme.spacing.unit
         },
 
-        // Fit 1 items when width < 600px
-        '@media (max-width: 600px)': {
-            width: ITEM_WIDTH
+        // > 960px: fit 3 items
+        [theme.breakpoints.up('md')]: {
+            width: ITEM_WIDTH * 3 + theme.spacing.unit * 2
         }
     },
     item: {
