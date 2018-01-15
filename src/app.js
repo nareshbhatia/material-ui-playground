@@ -7,9 +7,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Shell } from './shell';
 
 const palette = {
-    primary: blue,
-    secondary: pink,
-    error: red
+    primary: {
+        main: blue[500]
+    },
+    secondary: {
+        main: pink.A400
+    },
+    error: {
+        main: red.A400
+    }
 };
 
 class App extends React.Component {
