@@ -1,6 +1,10 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
+import { inject } from 'mobx-react';
+import { RouterView } from 'mobx-state-router';
 import { GridDemo } from './features/grid-demo/grid-demo';
+import { TileList } from './features/tile-list/tile-list';
+import { NavBar } from './nav-bar';
 
 const styles = theme => ({
     '@global': {
@@ -35,20 +39,28 @@ const styles = theme => ({
     root: {
         flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'row'
     }
 });
 
+const viewMap = {
+    gridDemo: <GridDemo />,
+    tileList: <TileList />
+};
+
 class ShellBase extends React.Component {
     render() {
-        const { classes } = this.props;
+        const { classes, rootStore: { routerStore } } = this.props;
 
         return (
             <div className={classes.root}>
-                <GridDemo />
+                <NavBar />
+                <RouterView routerStore={routerStore} viewMap={viewMap} />
             </div>
         );
     }
 }
 
-export const Shell = withStyles(styles)(ShellBase);
+const ShellWithRootStore = inject('rootStore')(ShellBase);
+
+export const Shell = withStyles(styles)(ShellWithRootStore);

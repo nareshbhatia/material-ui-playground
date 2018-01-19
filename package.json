@@ -1,20 +1,49 @@
 {
   "name": "material-ui-playground",
+  "description": "A place to experiment with Material-UI components",
   "version": "1.0.0",
-  "dependencies": {
-    "material-ui": "^1.0.0-beta.28",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+  "author": "Naresh Bhatia",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nareshbhatia/material-ui-playground.git"
   },
+  "keywords": [
+    "material-ui",
+    "react"
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "analyze": "source-map-explorer build/static/js/main.*",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --print-width 80 --tab-width 4 --single-quote --write '{src,stories}/**/*.js'",
+    "precommit": "lint-staged",
+    "gen": "plop --plopfile generators/plopfile.js"
+  },
+  "dependencies": {
+    "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.29",
+    "mobx": "^3.4.1",
+    "mobx-react": "^4.3.5",
+    "mobx-state-router": "^1.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "inquirer-directory": "^2.1.0",
+    "lint-staged": "^6.0.0",
+    "plop": "^1.9.1",
+    "prettier": "^1.10.2",
     "source-map-explorer": "^1.5.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --print-width 80 --tab-width 4 --single-quote --write",
+      "git add"
+    ]
   }
 }
