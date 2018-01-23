@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { inject } from 'mobx-react';
 import { RouterView } from 'mobx-state-router';
 import { GridDemo } from './features/grid-demo/grid-demo';
+import { NotFoundPage } from './features/not-found-page';
 import { TileList } from './features/tile-list/tile-list';
 import { NavBar } from './nav-bar';
 
@@ -45,6 +46,7 @@ const styles = theme => ({
 
 const viewMap = {
     gridDemo: <GridDemo />,
+    notFound: <NotFoundPage />,
     tileList: <TileList />
 };
 

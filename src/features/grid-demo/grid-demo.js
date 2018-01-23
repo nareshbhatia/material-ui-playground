@@ -55,7 +55,10 @@ class GridDemoBase extends React.Component {
                                 <Typography type="headline">
                                     {member.name}
                                 </Typography>
-                                <Typography type="subheading" color="secondary">
+                                <Typography
+                                    type="subheading"
+                                    color="textSecondary"
+                                >
                                     {member.flag}
                                 </Typography>
                             </div>
