@@ -6,6 +6,6 @@
 //     /items/:id
 export const routes = [
     { name: 'gridDemo', pattern: '/' },
-    { name: 'notFound', pattern: '/not-found' },
-    { name: 'tileList', pattern: '/tile-list' }
+    { name: 'hoc', pattern: '/hoc' },
+    { name: 'notFound', pattern: '/not-found' }
 ];

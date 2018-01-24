@@ -3,8 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import { inject } from 'mobx-react';
 import { RouterView } from 'mobx-state-router';
 import { GridDemo } from './features/grid-demo/grid-demo';
+import { HocConcepts } from './features/hoc/hoc-concepts';
 import { NotFoundPage } from './features/not-found-page';
-import { TileList } from './features/tile-list/tile-list';
 import { NavBar } from './nav-bar';
 
 const styles = theme => ({
@@ -46,8 +46,8 @@ const styles = theme => ({
 
 const viewMap = {
     gridDemo: <GridDemo />,
-    notFound: <NotFoundPage />,
-    tileList: <TileList />
+    hoc: <HocConcepts />,
+    notFound: <NotFoundPage />
 };
 
 class ShellBase extends React.Component {

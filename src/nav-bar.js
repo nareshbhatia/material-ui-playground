@@ -7,7 +7,7 @@ import { RouterState } from 'mobx-state-router';
 import PropTypes from 'prop-types';
 
 const GridDemoState = new RouterState('gridDemo');
-const TileListState = new RouterState('tileList');
+const HocState = new RouterState('hoc');
 
 const styles = theme => ({
     drawerPaper: {
@@ -59,11 +59,8 @@ class NavBarBase extends React.Component {
                     >
                         Grid Demo
                     </NavItem>
-                    <NavItem
-                        routerState={TileListState}
-                        onClick={this.onItemClick}
-                    >
-                        TileList
+                    <NavItem routerState={HocState} onClick={this.onItemClick}>
+                        HOC Concepts
                     </NavItem>
                 </List>
             </Drawer>
