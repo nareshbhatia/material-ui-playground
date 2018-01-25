@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
@@ -37,6 +38,12 @@ class HocConceptsBase extends React.Component {
                     {'Oranges'}
                     {'Apples'}
                 </SortedList>
+
+                <Typography type="title" className={classes.sectionTitle}>
+                    Style tiles based on type
+                </Typography>
+                <Tile type="primary">Tile 1 (primary)</Tile>
+                <Tile type="secondary">Tile 2 (secondary)</Tile>
             </div>
         );
     }
@@ -86,3 +93,53 @@ const MyList = ({ children }) => {
 
 // Pass it through `sort` to create a component that renders a sorted list
 const SortedList = sort(MyList);
+
+//-------------------------------------------------------------------------------
+// Tile
+//-------------------------------------------------------------------------------
+// TODO: Look at Render Props API for an alternate way to do this:
+// https://github.com/mui-org/material-ui/blob/v1-beta/docs/src/pages/customization/css-in-js.md#render-props-api-11-lines
+
+// StyleInjector takes `classes` as props and renames them to `injectedClasses`
+const StyleInjector = Component => ({ classes, children, ...props }) => (
+    <Component injectedClasses={classes} {...props}>
+        {children}
+    </Component>
+);
+
+// ---- TileBaseWithStyles has some fixed styles and some injected styles
+const tileBaseStyles = theme => ({
+    root: {
+        height: 50,
+        padding: theme.spacing.unit,
+        marginBottom: theme.spacing.unit
+    }
+});
+
+function TileBase({ classes, injectedClasses, type, children }) {
+    const tileClass = classNames(
+        classes.root,
+        type === 'primary' ? injectedClasses.primary : injectedClasses.secondary
+    );
+
+    return <div className={tileClass}>{children}</div>;
+}
+
+const TileBaseWithStyles = withStyles(tileBaseStyles)(TileBase);
+
+// ---- Tile injects additional classes into TileBaseWithStyles
+const tileTypeStyles = theme => ({
+    primary: {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.main
+    },
+    secondary: {
+        color: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.secondary.main
+    }
+});
+
+const withTileTypeStyles = Component =>
+    withStyles(tileTypeStyles)(StyleInjector(Component));
+
+const Tile = withTileTypeStyles(TileBaseWithStyles);
