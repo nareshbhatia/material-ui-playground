@@ -5,6 +5,7 @@ import { RouterView } from 'mobx-state-router';
 import { GridDemo } from './features/grid-demo/grid-demo';
 import { HocConcepts } from './features/hoc/hoc-concepts';
 import { NotFoundPage } from './features/not-found-page';
+import { Header } from './header';
 import { NavBar } from './nav-bar';
 
 const styles = theme => ({
@@ -40,6 +41,11 @@ const styles = theme => ({
     root: {
         flex: 1,
         display: 'flex',
+        flexDirection: 'column'
+    },
+    content: {
+        flex: 1,
+        display: 'flex',
         flexDirection: 'row'
     }
 });
@@ -56,11 +62,19 @@ class ShellBase extends React.Component {
 
         return (
             <div className={classes.root}>
-                <NavBar />
-                <RouterView routerStore={routerStore} viewMap={viewMap} />
+                <Header onToggleTheme={this.handleToggleTheme} />
+                <div className={classes.content}>
+                    <NavBar />
+                    <RouterView routerStore={routerStore} viewMap={viewMap} />
+                </div>
             </div>
         );
     }
+
+    handleToggleTheme = () => {
+        const { rootStore: { appStore } } = this.props;
+        appStore.toggleTheme();
+    };
 }
 
 const ShellWithRootStore = inject('rootStore')(ShellBase);

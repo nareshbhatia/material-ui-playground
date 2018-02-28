@@ -47,7 +47,7 @@ class NavBarBase extends React.Component {
 
         return (
             <Drawer
-                type="permanent"
+                variant="permanent"
                 classes={{
                     paper: classes.drawerPaper
                 }}

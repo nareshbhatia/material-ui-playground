@@ -21,14 +21,14 @@ class HocConceptsBase extends React.Component {
 
         return (
             <div className={classes.root}>
-                <Typography type="headline">HOC Concepts</Typography>
+                <Typography variant="headline">HOC Concepts</Typography>
 
-                <Typography type="title" className={classes.sectionTitle}>
+                <Typography variant="title" className={classes.sectionTitle}>
                     yell: transforms its input to uppercase
                 </Typography>
                 <AngryText>Whatever!</AngryText>
 
-                <Typography type="title" className={classes.sectionTitle}>
+                <Typography variant="title" className={classes.sectionTitle}>
                     sort: sorts its children
                 </Typography>
                 <SortedList>
@@ -39,7 +39,7 @@ class HocConceptsBase extends React.Component {
                     {'Apples'}
                 </SortedList>
 
-                <Typography type="title" className={classes.sectionTitle}>
+                <Typography variant="title" className={classes.sectionTitle}>
                     Style tiles based on type
                 </Typography>
                 <Tile type="primary">Tile 1 (primary)</Tile>

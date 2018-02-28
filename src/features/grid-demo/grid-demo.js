@@ -52,11 +52,11 @@ class GridDemoBase extends React.Component {
                                 className={classes.picture}
                             />
                             <div className={classes.content}>
-                                <Typography type="headline">
+                                <Typography variant="headline">
                                     {member.name}
                                 </Typography>
                                 <Typography
-                                    type="subheading"
+                                    variant="subheading"
                                     color="textSecondary"
                                 >
                                     {member.flag}
