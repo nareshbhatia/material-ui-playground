@@ -7,5 +7,6 @@
 export const routes = [
     { name: 'gridDemo', pattern: '/' },
     { name: 'hoc', pattern: '/hoc' },
+    { name: 'textColors', pattern: '/text-colors' },
     { name: 'notFound', pattern: '/not-found' }
 ];

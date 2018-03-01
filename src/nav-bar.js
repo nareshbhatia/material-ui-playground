@@ -6,8 +6,9 @@ import { inject } from 'mobx-react';
 import { RouterState } from 'mobx-state-router';
 import PropTypes from 'prop-types';
 
-const GridDemoState = new RouterState('gridDemo');
-const HocState = new RouterState('hoc');
+const gridDemoState = new RouterState('gridDemo');
+const hocState = new RouterState('hoc');
+const textColorsState = new RouterState('textColors');
 
 const styles = theme => ({
     drawerPaper: {
@@ -54,13 +55,19 @@ class NavBarBase extends React.Component {
             >
                 <List>
                     <NavItem
-                        routerState={GridDemoState}
+                        routerState={gridDemoState}
                         onClick={this.onItemClick}
                     >
                         Grid Demo
                     </NavItem>
-                    <NavItem routerState={HocState} onClick={this.onItemClick}>
+                    <NavItem routerState={hocState} onClick={this.onItemClick}>
                         HOC Concepts
+                    </NavItem>
+                    <NavItem
+                        routerState={textColorsState}
+                        onClick={this.onItemClick}
+                    >
+                        Text Colors
                     </NavItem>
                 </List>
             </Drawer>

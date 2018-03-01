@@ -5,6 +5,7 @@ import { RouterView } from 'mobx-state-router';
 import { GridDemo } from './features/grid-demo/grid-demo';
 import { HocConcepts } from './features/hoc/hoc-concepts';
 import { NotFoundPage } from './features/not-found-page';
+import { TextColors } from './features/text-colors/text-colors';
 import { Header } from './header';
 import { NavBar } from './nav-bar';
 
@@ -53,6 +54,7 @@ const styles = theme => ({
 const viewMap = {
     gridDemo: <GridDemo />,
     hoc: <HocConcepts />,
+    textColors: <TextColors />,
     notFound: <NotFoundPage />
 };
 
