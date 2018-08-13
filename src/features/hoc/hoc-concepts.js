@@ -15,41 +15,52 @@ const styles = theme => ({
     }
 });
 
-class HocConceptsBase extends React.Component {
-    render() {
-        const { classes } = this.props;
+const decorate = withStyles(styles);
 
-        return (
-            <div className={classes.root}>
-                <Typography variant="headline">HOC Concepts</Typography>
+export const HocConcepts = decorate(
+    class extends React.Component {
+        render() {
+            const { classes } = this.props;
 
-                <Typography variant="title" className={classes.sectionTitle}>
-                    yell: transforms its input to uppercase
-                </Typography>
-                <AngryText>Whatever!</AngryText>
+            return (
+                <div className={classes.root}>
+                    <Typography variant="headline">HOC Concepts</Typography>
 
-                <Typography variant="title" className={classes.sectionTitle}>
-                    sort: sorts its children
-                </Typography>
-                <SortedList>
-                    {/* We use expression containers to make sure our strings
+                    <Typography
+                        variant="title"
+                        className={classes.sectionTitle}
+                    >
+                        yell: transforms its input to uppercase
+                    </Typography>
+                    <AngryText>Whatever!</AngryText>
+
+                    <Typography
+                        variant="title"
+                        className={classes.sectionTitle}
+                    >
+                        sort: sorts its children
+                    </Typography>
+                    <SortedList>
+                        {/* We use expression containers to make sure our strings
                     are passed as three children, not as one string */}
-                    {'Bananas'}
-                    {'Oranges'}
-                    {'Apples'}
-                </SortedList>
+                        {'Bananas'}
+                        {'Oranges'}
+                        {'Apples'}
+                    </SortedList>
 
-                <Typography variant="title" className={classes.sectionTitle}>
-                    Style tiles based on type
-                </Typography>
-                <Tile type="primary">Tile 1 (primary)</Tile>
-                <Tile type="secondary">Tile 2 (secondary)</Tile>
-            </div>
-        );
+                    <Typography
+                        variant="title"
+                        className={classes.sectionTitle}
+                    >
+                        Style tiles based on type
+                    </Typography>
+                    <TypedTile type="primary">Tile 1 (primary)</TypedTile>
+                    <TypedTile type="secondary">Tile 2 (secondary)</TypedTile>
+                </div>
+            );
+        }
     }
-}
-
-export const HocConcepts = withStyles(styles)(HocConceptsBase);
+);
 
 //-------------------------------------------------------------------------------
 // Examples from
@@ -97,9 +108,6 @@ const SortedList = sort(MyList);
 //-------------------------------------------------------------------------------
 // Tile
 //-------------------------------------------------------------------------------
-// TODO: Look at Render Props API for an alternate way to do this:
-// https://github.com/mui-org/material-ui/blob/v1-beta/docs/src/pages/customization/css-in-js.md#render-props-api-11-lines
-
 // StyleInjector takes `classes` as props and renames them to `injectedClasses`
 const StyleInjector = Component => ({ classes, children, ...props }) => (
     <Component injectedClasses={classes} {...props}>
@@ -107,8 +115,8 @@ const StyleInjector = Component => ({ classes, children, ...props }) => (
     </Component>
 );
 
-// ---- TileBaseWithStyles has some fixed styles and some injected styles
-const tileBaseStyles = theme => ({
+// ---- Tile has some fixed styles and some injected styles
+const tileStyles = theme => ({
     root: {
         height: 50,
         padding: theme.spacing.unit,
@@ -116,16 +124,16 @@ const tileBaseStyles = theme => ({
     }
 });
 
-function TileBase({ classes, injectedClasses, type, children }) {
+const decorateTile = withStyles(tileStyles);
+
+const Tile = decorateTile(({ classes, injectedClasses, type, children }) => {
     const tileClass = classNames(
         classes.root,
         type === 'primary' ? injectedClasses.primary : injectedClasses.secondary
     );
 
     return <div className={tileClass}>{children}</div>;
-}
-
-const TileBaseWithStyles = withStyles(tileBaseStyles)(TileBase);
+});
 
 // ---- Tile injects additional classes into TileBaseWithStyles
 const tileTypeStyles = theme => ({
@@ -142,4 +150,4 @@ const tileTypeStyles = theme => ({
 const withTileTypeStyles = Component =>
     withStyles(tileTypeStyles)(StyleInjector(Component));
 
-const Tile = withTileTypeStyles(TileBaseWithStyles);
+const TypedTile = withTileTypeStyles(Tile);
