@@ -24,22 +24,12 @@ export const HocConcepts = decorate(
 
             return (
                 <div className={classes.root}>
-                    <Typography variant="headline">HOC Concepts</Typography>
+                    <Headline>HOC Concepts</Headline>
 
-                    <Typography
-                        variant="title"
-                        className={classes.sectionTitle}
-                    >
-                        yell: transforms its input to uppercase
-                    </Typography>
+                    <Section>yell: transforms its input to uppercase</Section>
                     <AngryText>Whatever!</AngryText>
 
-                    <Typography
-                        variant="title"
-                        className={classes.sectionTitle}
-                    >
-                        sort: sorts its children
-                    </Typography>
+                    <Section>sort: sorts its children</Section>
                     <SortedList>
                         {/* We use expression containers to make sure our strings
                     are passed as three children, not as one string */}
@@ -48,12 +38,7 @@ export const HocConcepts = decorate(
                         {'Apples'}
                     </SortedList>
 
-                    <Typography
-                        variant="title"
-                        className={classes.sectionTitle}
-                    >
-                        Style tiles based on type
-                    </Typography>
+                    <Section>Style tiles based on type</Section>
                     <TypedTile type="primary">Tile 1 (primary)</TypedTile>
                     <TypedTile type="secondary">Tile 2 (secondary)</TypedTile>
                 </div>
@@ -151,3 +136,19 @@ const withTileTypeStyles = Component =>
     withStyles(tileTypeStyles)(StyleInjector(Component));
 
 const TypedTile = withTileTypeStyles(Tile);
+
+//-------------------------------------------------------------------------------
+// Headline
+//-------------------------------------------------------------------------------
+const Headline = ({ children }) => (
+    <Typography variant="headline">{children}</Typography>
+);
+
+//-------------------------------------------------------------------------------
+// Section
+//-------------------------------------------------------------------------------
+const Section = decorate(({ classes, children }) => (
+    <Typography variant="title" className={classes.sectionTitle}>
+        {children}
+    </Typography>
+));

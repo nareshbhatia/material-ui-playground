@@ -3,12 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
 import { inject } from 'mobx-react';
-import { RouterState } from 'mobx-state-router';
 import PropTypes from 'prop-types';
-
-const gridDemoState = new RouterState('gridDemo');
-const hocState = new RouterState('hoc');
-const textColorsState = new RouterState('textColors');
 
 const styles = theme => ({
     drawerPaper: {
@@ -20,7 +15,7 @@ const styles = theme => ({
 
 class NavItem extends React.Component {
     static propTypes = {
-        routerState: PropTypes.object.isRequired,
+        routeName: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired
     };
 
@@ -33,8 +28,8 @@ class NavItem extends React.Component {
     }
 
     handleClick = () => {
-        const { routerState, onClick } = this.props;
-        onClick(routerState);
+        const { routeName, onClick } = this.props;
+        onClick(routeName);
     };
 }
 
@@ -54,19 +49,16 @@ class NavBarBase extends React.Component {
                 }}
             >
                 <List>
-                    <NavItem
-                        routerState={gridDemoState}
-                        onClick={this.onItemClick}
-                    >
+                    <NavItem routeName="gridDemo" onClick={this.onItemClick}>
                         Grid Demo
                     </NavItem>
-                    <NavItem routerState={hocState} onClick={this.onItemClick}>
-                        HOC Concepts
+                    <NavItem routeName="hoc" onClick={this.onItemClick}>
+                        HOCs
                     </NavItem>
-                    <NavItem
-                        routerState={textColorsState}
-                        onClick={this.onItemClick}
-                    >
+                    <NavItem routeName="renderProp" onClick={this.onItemClick}>
+                        Render Props
+                    </NavItem>
+                    <NavItem routeName="textColors" onClick={this.onItemClick}>
                         Text Colors
                     </NavItem>
                 </List>
