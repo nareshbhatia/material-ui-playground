@@ -50,12 +50,31 @@ export const RenderPropConcepts = decorate(
 );
 
 //-------------------------------------------------------------------------------
-// A render prop is a prop that is a function. A component can use a render prop
-// to render itself.
-// Reference: https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce.
+// A render prop is a prop that is a function
+//   - the function must returns a React element
+//
+// A component that specifies a render prop can use it to render itself.
+//
+// General Pattern
+// ---------------
+// const SharedComponent extends React.Component {
+//     static propTypes = {
+//         render: PropTypes.func.isRequired
+//     };
+//
+//     render() {
+//         return (
+//             <div>
+//                 {this.props.render(...some-arguments...)}
+//             </div>
+//         );
+//     }
+// }
 //
 // In general, the render prop does not have to be called "render", it could be
 // anything that is used for rendering.
+//
+// Reference: https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce.
 //-------------------------------------------------------------------------------
 /**
  * Mouse - a component that uses a render prop to render itself
